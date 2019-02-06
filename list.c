@@ -18,4 +18,12 @@ int main(void)
     head = (struct Node*)malloc(sizeof(struct Node));
     second = (struct Node*)malloc(sizeof(struct Node));
     third = (struct Node*)malloc(sizeof(struct Node));
+
+    head-> data = 5;
+    head-> next;
+
+    second-> data = 7;
+    second-> next;
+
+    third -> data = 9;
 }
