@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct Node
 {
@@ -7,10 +8,13 @@ typedef struct Node
 
 } Node;
 
+void push(int, struct Node*);
+int pop(struct Node*);
+// int peek(struct Node*);
+
 
 int main(void)
 {
-    printf("Hello World!\n");
 
     struct Node* head = NULL;
     struct Node* second = NULL; // Creating pointers for those Nodes
@@ -34,6 +38,8 @@ int main(void)
     third -> data = 9;
     third-> next = NULL;
 
+    push(11, head);
+    printf("%i", pop(head));
 
 
 }
@@ -51,19 +57,40 @@ void push(int data, struct Node* head) // pushing to each list until reaching th
    trav->next->data = data;
    trav->next->next = NULL;
     // at end of the list
-
-
+    push(11, head);
+    printf("%i", pop(head));
 }
 
 
 int pop(struct Node* head)
 {
-    struct Node* letsPop = head;
+    struct Node* letsPop = head; // Created the address that will point to the head
 
-    do while(letsPop->next == NULL)
+    while(letsPop->next->next != NULL) // find the second to last node
     {
+        letsPop = letsPop-> next;
 
     }
+
+    int data = letsPop->next->data;
+    free(letsPop->next);
+    letsPop->next = NULL;
+    return data;
+
+}
+
+int peek(struct Node* head) // finding the last number and grabbing it.
+{
+    struct Node* trav = head;
+
+    while(trav->next != NULL) // while trav is not equal to NULL
+    {
+        trav = trav-> next; // transition through each and every list
+    }
+
+    int data = trav->next->data; // variable for data
+    trav->next->next = NULL;
+    return data;
 
 }
 
