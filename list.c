@@ -88,9 +88,9 @@ int peek(struct Node* head) // finding the last number and grabbing it.
         trav = trav-> next; // transition through each and every list
     }
 
-    int data = trav->next->data; // variable for data
-    trav->next->next = NULL;
-    return data;
+    int data = trav->next->data; // grabs the data of each list
+    trav->next-> = NULL; // Once it reaches the  last then it will be NULL
+    return data; // returns the data for NULL
 
 }
 
