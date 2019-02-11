@@ -42,7 +42,7 @@ int main(void)
     push(11, head);
     printf("%i\n", pop(head));
 
-    push(7, head);
+    push(3, head);
     printf("%i\n", peek(head));
 
 
@@ -71,8 +71,8 @@ void freeList(struct Node* root) // frees the lists that were ran to not cause a
 
     freeList(trav->next);// calls the function where it transitions through each node
 
-    free(trav); // fress the root which would also be trav
-    return;
+    free(trav); // frees node except the root itself
+    return; // goes back to the root
 
 
 }
@@ -98,7 +98,7 @@ void push(int data, struct Node* head) // pushing to each list until reaching th
 
 int pop(struct Node* head)
 {
-     struct Node* letsPop = head; // Created the address that will point to the head
+    struct Node* letsPop = head; // Created the address that will point to the head
 
     while(letsPop->next->next != NULL) // find the second to last node
     {
@@ -106,7 +106,7 @@ int pop(struct Node* head)
 
     }
 
-    int data = letsPop->next->data; // grabs the data of each item
+    int data = letsPop->next->data; // grabs the data of the second to last item
     free(letsPop->next); // frees the last item
     letsPop->next = NULL;
     return data;
@@ -117,14 +117,14 @@ int peek(struct Node* head) // finding the last number and grabbing it.
 {
     struct Node* trav = head;
 
-    while(trav->next->next != NULL) // while trav second to last item is not equal to NULL
+    while(trav->next != NULL) // while trav is not equal to NULL
     {
-        trav = trav->next; // move to the end list
+        trav = trav->next; // transition through each and every list
     }
 
-    int data = trav->next->data;
-    trav->next = NULL; // last item will be null
+    int data =
+    trav->next = NULL;// Once it reaches the  last then it will be NULL
+    return data; // returns back to the head
 
-    return data; // returned to the second to last item
 }
 
