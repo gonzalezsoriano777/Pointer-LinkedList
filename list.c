@@ -42,7 +42,7 @@ int main(void)
     push(11, head);
     printf("%i\n", pop(head));
 
-    push(3, head);
+    push(7, head);
     printf("%i\n", peek(head));
 
 
@@ -71,8 +71,8 @@ void freeList(struct Node* root) // frees the lists that were ran to not cause a
 
     freeList(trav->next);// calls the function where it transitions through each node
 
-    free(trav); // frees node except the root itself
-    return; // goes back to the root
+    free(trav); // fress the root which would also be trav
+    return;
 
 
 }
@@ -117,14 +117,14 @@ int peek(struct Node* head) // finding the last number and grabbing it.
 {
     struct Node* trav = head;
 
-    while(trav->next != NULL) // while trav is not equal to NULL
+    while(trav->next->next != NULL) // while trav is equal to NULL
     {
-        trav = trav->next; // transition through each and every list
+        trav = trav->next;
     }
+    int data = trav->next->data;
+    trav->next = NULL;
 
-    int data =
-    trav->next = NULL;// Once it reaches the  last then it will be NULL
-    return data; // returns back to the head
+
 
 }
 
