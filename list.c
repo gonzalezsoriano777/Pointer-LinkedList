@@ -117,14 +117,14 @@ int peek(struct Node* head) // finding the last number and grabbing it.
 {
     struct Node* trav = head;
 
-    while(trav->next->next != NULL) // while trav is equal to NULL
+    while(trav->next->next != NULL) // while trav second to last item is not equal to NULL
     {
-        trav = trav->next;
+        trav = trav->next; // move to the end list
     }
+
     int data = trav->next->data;
-    trav->next = NULL;
+    trav->next = NULL; // last item will be null
 
-
-
+    return data; // returned to the second to last item
 }
 
