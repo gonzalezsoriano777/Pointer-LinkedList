@@ -115,16 +115,15 @@ int pop(struct Node* head)
 
 int peek(struct Node* head) // finding the last number and grabbing it.
 {
-    struct Node* trav = head;
+    struct Node* trav = head; // create the root
 
-    while(trav->next != NULL) // while trav is not equal to NULL
+    while(trav->next->next != NULL) // while trav second to last item is not NULL
     {
-        trav = trav->next; // transition through each and every list
+        trav = trav-> next; // transition to the next item (last item)
     }
 
-    int data =
-    trav->next = NULL;// Once it reaches the  last then it will be NULL
-    return data; // returns back to the head
-
+    int data = trav->next->data; // asks for the data of the item
+    trav->next = NULL; // Last item once grabbed will be made NULL
+    return data;
 }
 
