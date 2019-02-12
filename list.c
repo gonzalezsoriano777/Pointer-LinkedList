@@ -49,8 +49,6 @@ int main(void)
 
     freeList(head);
 
-
-
 }
 
 void freeList(struct Node* root) // frees the lists that were ran to not cause a memory leak
@@ -112,7 +110,7 @@ void push(int data, struct Node* head) // pushing to each list until reaching th
 
 int pop(struct Node* head)
 {
-    struct Node* letsPop = head; // Created the address that will point to the head
+     struct Node* letsPop = head; // Created the address that will point to the head
 
     if (letsPop == NULL)
     {
