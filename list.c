@@ -18,26 +18,25 @@ int main(void)
 {
 
     struct Node* head = NULL;
-    struct Node* second = NULL; // Creating pointers for those Nodes
-    struct Node* third = NULL;
+
 
 
     // Grabbing the pointer and allocating memory
     //(Creating a box for it) where the size of the structure of that node would be
+
     head = (struct Node*)malloc(sizeof(struct Node));
-    second = (struct Node*)malloc(sizeof(struct Node));
-    third = (struct Node*)malloc(sizeof(struct Node));
+    // second = (struct Node*)malloc(sizeof(struct Node));
+    // third = (struct Node*)malloc(sizeof(struct Node));
 
 
+    head->data = 5;
+    head->next = NULL;
 
-    head-> data = 5;
-    head-> next = second;
+    // second-> data = 7;
+    // second-> next = third;  // How to grab data and move to the next list of data from head to third
 
-    second-> data = 7;
-    second-> next = third;  // How to grab data and move to the next list of data from head to third
-
-    third -> data = 9;
-    third-> next = NULL;
+    // third -> data = 9;
+    // third-> next = NULL;
 
     push(11, head);
     printf("%i\n", pop(head));
@@ -45,8 +44,9 @@ int main(void)
     push(3, head);
     printf("%i\n", peek(head));
 
+    push(14, head);
 
-
+    freeList(head);
 
 
 
@@ -56,13 +56,19 @@ void freeList(struct Node* root) // frees the lists that were ran to not cause a
 {
     struct Node* trav = root; // the head would be considered the root, where the list would start
 
+    if(trav == NULL)
+    {
+        return;
+    }
+
+
     if(trav->next == NULL)
     {
         free(trav);
         return;
     }
 
-  if(trav->next->next == NULL) // If the second to last list is NULL
+    if(trav->next->next == NULL) // If the second to last list is NULL
     {
         free(trav->next);// free the last list
         free(trav);
@@ -83,14 +89,21 @@ void push(int data, struct Node* head) // pushing to each list until reaching th
 {
     struct Node* trav = head;
 
-    while(trav->next != NULL)
+    while(trav != NULL && trav->next != NULL)
     {
         trav = trav-> next;
     }
 
-   trav->next = (struct Node*)malloc(sizeof(struct Node));
-   trav->next->data = data;
-   trav->next->next = NULL;
+   Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+   newNode->data = data;
+   newNode->next = NULL;
+
+   if(trav == NULL)
+   {
+       head = newNode;
+       return;
+   }
+    trav->next = newNode;
 
 
 }
@@ -99,6 +112,11 @@ void push(int data, struct Node* head) // pushing to each list until reaching th
 int pop(struct Node* head)
 {
     struct Node* letsPop = head; // Created the address that will point to the head
+
+    if (letsPop == NULL)
+    {
+        return -1;
+    }
 
     while(letsPop->next->next != NULL) // find the second to last node
     {
