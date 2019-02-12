@@ -38,13 +38,14 @@ int main(void)
     // third -> data = 9;
     // third-> next = NULL;
 
+
+    push(14, head);
     push(11, head);
     printf("%i\n", pop(head));
-
     push(3, head);
     printf("%i\n", peek(head));
 
-    push(14, head);
+
 
     freeList(head);
 
